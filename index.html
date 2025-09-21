@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="bootstrap.css" />
+</head>
+<style>
+    .container {
+        border-radius: 3px;
+        text-align: center;
+        text-decoration: underline;
+        width: fit-content;
+        height: fit-content;
+    }
+
+    body {
+        background-color: darkgray;
+        background-image: url(blue-office-stationery-set-with-laptop_23-2147843325.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .link {
+        text-decoration: underline;
+    }
+
+    span {
+        color: red;
+        text-decoration: none;
+    }
+</style>
+
+<body>
+    <div class="container mt-4size">
+        <h1 class="text-dark">Student Registration Page</h1>
+        <form method="get" class="form-control mt-2 mb-2 border border-dark">
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <label for="fname" class="form-label fw-bold">Full Name</label>
+                    <input type="text" name="" id="fname" class="form-control border border-dark"
+                        placeholder="Enter Your Full Name">
+                </div>
+                <div class="col-md-6 mt-2 ">
+                    <label for="uname" class="form-label fw-bold">User Name</label>
+                    <input type="text" name="" id="uname" class="form-control border border-dark"
+                        placeholder="Enter Your User Name" required>
+                    <span id="un"></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <label for="email" class="form-label fw-bold">Email</label>
+                    <input type="email" name="" id="email" class="form-control border border-dark"
+                        placeholder="Enter Your Email" required>
+                </div>
+                <div class="col-md-6 mt-2">
+                    <label for="pass" class="form-label fw-bold">Password</label>
+                    <input type="password" name="" id="pass" class="form-control border border-dark"
+                        placeholder="Enter Your Password" required>
+                    <span id="ps"></span>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6 mt-2">
+                    <label for="pn" class="form label fw-bold">Phone Number</label>
+                    <input type="text" name="" id="pn" class="form-control border border-dark"
+                        placeholder="Enter Your Phone Number" required>
+                    <span id="phone"></span>
+                    <button id='otp' class="btn btn-primary mt-2 ms-3 me-2">Genrate OTP</button>
+                </div>
+                <div class="col-md-6 mt-2">
+                    <label for="otp" class="form label fw-bold">Enter OTP</label>
+                    <input type="text" name="" id="ot" class="form-control border border-dark" placeholder="Enter OTP"
+                        required>
+                    <span id="o"></span>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-2">
+                        <label for="course" class="form-label fw-bold mt-3">Course</label>
+                        <select name="" id="course" class="form-select border border-dark" required>
+                            <option value="">Select Course</option>
+                            <option value="BCA">BCA</option>
+                            <option value="MCA">MCA</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mt-2">
+                        <label for="sem" class="form-label fw-bold mt-3 hide ">Semester</label>
+                        <select name="" id="sem" class="form-select border border-dark" required>
+                            <option value="">Select Semester</option>
+                            <option value="">1</option>
+                            <option value="">2</option>
+                            <option value="">3</option>
+                            <option value="">4</option>
+                            <option value="">5</option>
+                            <option value="">6</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mt-2 mb-2">
+                        <label for="roll" class="form-label fw-bold">Roll Number</label>
+                        <input type="text" name="" id="roll" class="form-control border border-dark" required>
+                    </div>
+                    <div class="col-md-4 mt-2 mb-2">
+                        <label for="Captcha" class="form-label fw-bold">Captcha</label>
+                        <div id="captcha" class="border p-2 mb-1"
+                            style="display:inline-block; font-weight:bold; font-size:18px;"></div>
+                        <button id="refreshCaptcha" class="btn btn-sm btn-secondary mb-1">Refresh</button>
+                        <input type="text" id="captchaInput" class="form-control border border-dark"
+                            placeholder="Enter Captcha" required>
+                        <span id="captchaError"></span>
+                    </div>
+                    <div class="col-md-4 mt-2">
+                        <input type="checkbox" name="" id="terms" class="form-check-input mt-4 me-2 border border-dark"
+                            required>
+                        <label for="terms" class="form-check-label mt-4 link fw-bold">I agree to terms and
+                            conditions</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mt-2 mb-2">
+                        <input type="submit" value="Submit" class="btn btn-success border border-dark">
+                    </div>
+                    <div class="col-md-6 mt-2 mb-2">
+                        <input type="reset" value="Reset" class="btn btn-danger border border-dark">
+                    </div>
+                </div>
+        </form>
+    </div>
+    <script>
+        document.querySelector('#course').addEventListener('click', () => {
+            if (document.querySelector('#course').value === 'MCA') {
+                document.querySelector('#sem').style.visibility = 'hidden'
+                document.querySelector('.hide').style.visibility = 'hidden';
+            }
+            else {
+                document.querySelector('#sem').style.visibility = 'visible';
+                document.querySelector('.hide').style.visibility = 'visible';
+            }
+        })
+        let generatedOtp;
+
+        document.querySelector("#otp").addEventListener("click", function () {
+            generatedOtp = Math.floor(100000 + Math.random() * 900000);
+            alert("Your OTP is: " + generatedOtp);
+        });
+
+        let currentCaptcha = "";
+        function generateCaptcha() {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            let captcha = "";
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            currentCaptcha = captcha;
+            document.querySelector("#captcha").innerText = captcha;
+        }
+        generateCaptcha();
+        document.querySelector("#refreshCaptcha").addEventListener("click", (e) => {
+            e.preventDefault();
+            generateCaptcha();
+        });
+
+        document.querySelector('input[type="submit"]').addEventListener("click", (e) => {
+            e.preventDefault();
+            let fn=document.querySelector('#fname').value;
+            let un = document.querySelector('#uname').value;
+            let p = document.querySelector('#pass').value;
+            let pn = document.querySelector('#pn').value;
+            let ot = document.querySelector('#ot').value;
+            let captchaVal = document.querySelector("#captchaInput").value;
+            let User;
+
+            if (generatedOtp == ot) {
+                document.querySelector('#o').innerText = 'otp Verified';
+                alert('Registration Successfull');
+            }
+            else
+                document.querySelector('#o').innerText = 'Error';
+
+            if (un.length < 5)
+                document.querySelector('#un').innerText = 'unique, min. 5 characters';
+            else
+                document.querySelector('#un').innerText = '';
+
+            if (p.length < 6)
+                document.querySelector('#ps').innerText = 'min. 6 characters';
+            else
+                document.querySelector('#ps').innerText = '';
+
+            if (pn.length > 10 || pn.length < 10)
+                document.querySelector('#phone').innerText = 'Exactly 10 digits';
+            else
+                document.querySelector('#phone').innerText = '';
+
+            if (captchaVal !== currentCaptcha)
+                document.querySelector("#captchaError").innerText = "Captcha does not match";
+            else
+                document.querySelector("#captchaError").innerText = "";
+        })
+    </script>
+    <script src="bootstrap.js"></script>
+</body>
+
+</html>
